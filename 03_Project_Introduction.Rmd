@@ -1,0 +1,28 @@
+---
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+\newpage
+
+# Introduction to Your Project
+
+## Purpose of the Project Guide
+This document will guide you through the different steps of your project and will provide you with valuable hints along the way. However, it is not a detailed step-by-step manual because we felt like you needed to develop the skills of coming up with your way of solving different tasks. This method is a great way to apply the knowledge and tools you have acquired through DataCamp.
+Since data science concepts are independent of specific programming languages, we will describe the general approach in a text chunk. Having understood the bigger picture and starting with the tasks, you will find language-specific tips and tricks in visually separated boxes (R -Track : blue-bordered boxes, Python - Track : yellow-bordered boxes).
+Questions might come up, or you might not know how to solve a task right away—but don’t worry—this is just part of coding. In those cases, you could ask your team members for help. If they are not able to help, and in the unlikely case that even Google can’t help you, the TechAcademy mentors will help you via Slack or directly during the coding meetups.
+At the end of the project guide, you will find an overview of all tasks that have to be completed, depending on your track (beginner/advanced). You can use this list to check which tasks you still need to complete or which assignments are relevant for your track.
+
+## What is this Project About?
+This semester, we will have a look at Netflix data! More precisely, we are first analyzing a very detailed general Netflix data set, compiled on [kaggle](https://www.kaggle.com/datasets/kyleahmurphy/nass-honey-bee-20152021?select=NASS_Bee-Stressors_2015-2021.csv), after which you will get the chance to look at your own Netflix data. You will find all kinds of information in the data sets - valuable and useless ones.
+Are you already curious to see for yourself? In analogy to the typical Data Science workflow, we split this project into two parts. 
+
+
+## Exploratory Data Analysis -- Getting to Know the Data Set
+This first part of the project is structured in a way that lets you get to know the data thoroughly by completing the given tasks one after the other. As a beginner, you can stop after this part because you will have fulfilled the necessary coding requirements for the certificate. However, if this first part inspires you to learn more, we encourage you to also work on the second part.
+If you get stuck, **Google** and [StackOverflow](https://stackoverflow.com/) are amazing problem solver (besides the mentors, of course).
+
+
+## Recommendation System
+This part is mainly for the advanced TechAcademy participants. If you are a beginner and you were able to complete the first part without too many difficulties, we highly recommend trying to do the second part as well. 

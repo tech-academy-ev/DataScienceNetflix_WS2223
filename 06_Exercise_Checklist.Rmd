@@ -1,0 +1,25 @@
+---
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+\newpage
+
+# Exercise Checklist
+
+This checklist should help you keep track of your exercises. Remember that you have to hand in satisfactory solutions to at least *two-thirds* of the exercises. If you're part of the beginner track, this refers to two-thirds of section 4 (EDA) only. If you're part of the advanced track, you have to hand in at least two-thirds of  section 4 and 5. Hence, you'll need at least 66% in each of the two sections for a certificate.
+
+## Part 1: Exploratory Data Analysis (Beginner + Advanced Tracks)
+
+### &check;  You completed at least 6 courses on Datacamp.{.unlisted .unnumbered} 
+### &check;  You completed section 4 and handed your project at least 3 times in.{.unlisted .unnumbered}
+### &check;  You checked that you included everything you coded in the right order and added explanatory comments.{.unlisted .unnumbered} 
+### &check;  You have all your output in the desired format.{.unlisted .unnumbered}
+### &check;  You compared your output with your group.{.unlisted .unnumbered}
+### &check;  You sent your final work to **projekt@tech-academy.io** (Remeber: Each team member has to hand in their final work individually, in any case it can be the same  within the group).{.unlisted .unnumbered}
+
+## Part 2: Recommendation System(motivated Beginner + Advanced Tracks)
+
+### &check;  Everything of the above stated. {.unlisted .unnumbered}
+### &check;  **In addition** you also completed section 5 and handed your project at least 3 times in. {.unlisted .unnumbered}

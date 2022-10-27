@@ -8,6 +8,8 @@ editor_options:
   
 # What's Next in Your Data Science Career?
 
+## Continue your journey on DataCamp 
+You can continue learning on DataCamp until the start of the next Semester! Check out the Tracks (Skill and Career Tracks) and make sure to complete them to receives DataCamp's Statement of Accomplishment.
 
 ## Data Science in General
 
@@ -24,7 +26,7 @@ editor_options:
 ## R
 
 :::: {.tips .r data-latex="r"}
- 
+
 **Version Control with Git**
 
 RStudio has a nice interface that lets you enjoy the perks of Git without ever having to touch the command line – sounds great, does it? Learn how to set up the Git & R workflow with [Happy Git with R](https://happygitwithr.com/).
@@ -40,7 +42,6 @@ Hadley Wickham was and continues to be extremely influential on the development 
 **Join the [Campus useR Group in Frankfurt](https://www.meetup.com/r-frankfurt/)**
 
 There’s a quite active R community in Frankfurt that meets once a month. It’s open for students, professors, industry practitioners, journalists, and all people that love to use R. In those meetings, you’ll hear about other’s work, discuss new developments, and ask questions.
-
 
 **Listen to R Podcasts**
 Another great way to easily keep up with new developments in the Data Science/R community. Check out

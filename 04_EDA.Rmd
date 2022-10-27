@@ -104,9 +104,9 @@ You could use {dplyr}’s select, filter, count and arrange function to compute 
 For the plot, look at {ggplot} and then call geom_bar(). {ggplot2}’s syntax is perhaps a bit harder to learn at the start, but it gives you more plotting benefits in the long run. If you haven’t heard of the {ggplot2} package yet, take the respective DataCamp course.
 :::
 
-::: {.tipsp .python data-latex="p"}
+<!-- ::: {.tipsp .python data-latex="p"} -->
 
-:::
+<!-- ::: -->
 
 ## Data Cleaning and Useful Transformations
 
@@ -132,9 +132,9 @@ Next you might have recognized the “min” appendix. This can be deleted with 
 For the mean and standard deviation simply use {base} R’s mean() function to compute a mean of any column in R. Similarly, R comes with the sd() function to calculate the standard deviation of a column. You can combine these two functions, e.g., in a {dplyr}’s summarise() verb.
 :::
 
-::: {.tipsp .python data-latex="p"}
+<!-- ::: {.tipsp .python data-latex="p"} -->
 
-:::
+<!-- ::: -->
 
 ### A histogram of the top 10 longest movies duration
 
@@ -149,9 +149,9 @@ We focus on creating a histogram in the tips section since it’s perhaps the mo
 If your data is saved as a dataframe you can perceive with the data from the previous task. Use {ggplot2} to create a histogram. Integrate top_n() before the ggplot() call and select geom_col() to achieve a histogram presentation.
 :::
 
-::: {.tipsp .python data-latex="p"}
+<!-- ::: {.tipsp .python data-latex="p"} -->
 
-:::
+<!-- ::: -->
 
 ### Visualizing movie durations over time
 
@@ -166,9 +166,9 @@ After plotting, please comment and interpret the graph: Were there any significa
 Again, it's ggplot’s turn. Instead of preparing the summarise() and mean() functions combination you can also directly integrate the adjustments in the geom_bar call with (stat = "summary", fun = "mean"). 
 :::
 
-::: {.tipsp .python data-latex="p"}
+<!-- ::: {.tipsp .python data-latex="p"} -->
 
-:::
+<!-- ::: -->
 
 ## Your personal data
 
@@ -186,9 +186,9 @@ Additionally, convert the column Duration in minutes (round them) and extract th
 mutate and filter are your best friends in this cleaning process. 
 :::
 
-::: {.tipsp .python data-latex="p"}
+<!-- ::: {.tipsp .python data-latex="p"} -->
 
-:::
+<!-- ::: -->
 
 
 ### Merging datasets: primitive approach
@@ -224,9 +224,9 @@ Your goal for this task is to plot how each viewer’s activity was recorded ove
 The data is already ready for this. Your ggplot() call might need some more input than you used before. As the graphic is supposed to be a line with points geom_line() and geom_point () will be a good choice of combination. The dynamic aspect is no magic, you just need to add the transition_reveal() call. 
 :::
 
-::: {.tipsp .python data-latex="p"}
+<!-- ::: {.tipsp .python data-latex="p"} -->
 
-:::
+<!-- ::: -->
 
 ## Let’s get personal
 
@@ -295,9 +295,9 @@ Again, you could use the familiar {dplyr} verbs for this part. You first want to
 For the plot, you can use ggplots geom_col() or whatever you think is best to present your binge series
 :::
 
-::: {.tipsp .python data-latex="p"}
+<!-- ::: {.tipsp .python data-latex="p"} -->
 
-:::
+<!-- ::: -->
 
 
 ## Scatterplot with marginal density
@@ -308,9 +308,9 @@ You have computed and visualized your favorite binge tv shows, but how has your 
 
 ```
 
-::: {.tips .r data-latex="r"}
+<!-- ::: {.tips .r data-latex="r"} -->
 
-:::
+<!-- ::: -->
 
 ::: {.tipsp .python data-latex="p"}
 Again, seaborn is your best friend! The jointplot function will give you a great plot if you use it correctly. 
@@ -329,9 +329,9 @@ Install the package "wordcloud" and start preparing your joined dataset. We are 
 For the word cloud, set a seed if you want to get the same cloud every time you run the code. The call wordcloud only needs to be filled with the respective word and frequency column. Feel free to spice it up!
 :::
 
-::: {.tipsp .python data-latex="p"}
+<!-- ::: {.tipsp .python data-latex="p"} -->
 
-:::
+<!-- ::: -->
 
 
 ## Surprise Us! 

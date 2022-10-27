@@ -252,9 +252,9 @@ Let’s get a little fancy by displaying the monthly average time you watched in
 
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Starting Colonies in 2020.jpg")
-```
+<!-- ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"} -->
+<!-- knitr::include_graphics("plot/Starting Colonies in 2020.jpg") -->
+<!-- ``` -->
 
 ::: {.tips .r data-latex="r"}
 This task involves three steps. First, you want to extract the month from the “start_time” column, where lubridate will help you. You can then use the group_by argument to group the dataset by the month and filter for a specific year. After that, you can pipe along and directly add the third step: your ggplot call. Now, you can visualize your output however you want. The presented output is obtained by combining geom_col + coord_polar().

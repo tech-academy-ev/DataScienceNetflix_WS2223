@@ -1,0 +1,4 @@
+
+Set path to index.Rmd if necessary >> setwd("<YOUR_PATH>")
+bookdown::render_book("index.Rmd", "bookdown::pdf_book")
+bookdown::render_book("index.Rmd", "bookdown::gitbook")

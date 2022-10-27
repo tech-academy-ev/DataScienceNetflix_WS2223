@@ -1,0 +1,7 @@
+book_filename: "Netflix"
+repo: "https://github.com/tech-academy-ev/DataScience_Netflix_WS2223"
+delete_merged_file: true
+output_dir: "docs"  # ../docs for parent folder
+language:
+  ui:
+    chapter_name: ""

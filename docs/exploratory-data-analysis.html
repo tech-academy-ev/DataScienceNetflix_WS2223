@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Exploratory Data Analysis | Data Science Project Guide: Netflix</title>
+  <meta name="description" content="Everything you need to know for your successful TechAcademy Data Science Project" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Exploratory Data Analysis | Data Science Project Guide: Netflix" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Everything you need to know for your successful TechAcademy Data Science Project" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Exploratory Data Analysis | Data Science Project Guide: Netflix" />
+  
+  <meta name="twitter:description" content="Everything you need to know for your successful TechAcademy Data Science Project" />
+  
+
+<meta name="author" content="TechAcademy e.V." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-your-project.html"/>
+<link rel="next" href="exercise-checklist.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="plot/TA_Logo.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a></li>
+<li class="chapter" data-level="2" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html"><i class="fa fa-check"></i><b>2</b> What’s Data Science and How Do I Do It?</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#whats-r"><i class="fa fa-check"></i><b>2.1</b> What’s R?</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#rstudio"><i class="fa fa-check"></i><b>2.1.1</b> RStudio</a></li>
+<li class="chapter" data-level="2.1.2" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#datacamp-courses-and-curriculum"><i class="fa fa-check"></i><b>2.1.2</b> DataCamp courses and Curriculum</a></li>
+<li class="chapter" data-level="2.1.3" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#helpful-links"><i class="fa fa-check"></i><b>2.1.3</b> Helpful Links</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#whats-python"><i class="fa fa-check"></i><b>2.2</b> What’s Python?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#anaconda-and-jupyter"><i class="fa fa-check"></i><b>2.2.1</b> Anaconda and Jupyter</a></li>
+<li class="chapter" data-level="2.2.2" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#datacamp-courses-and-curriculum-1"><i class="fa fa-check"></i><b>2.2.2</b> DataCamp courses and Curriculum</a></li>
+<li class="chapter" data-level="2.2.3" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#helpful-links-1"><i class="fa fa-check"></i><b>2.2.3</b> Helpful Links</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#your-data-science-project"><i class="fa fa-check"></i><b>2.3</b> Your Data Science Project</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#prelude"><i class="fa fa-check"></i><b>2.3.1</b> Prelude</a></li>
+<li class="chapter" data-level="2.3.2" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#coding-meetups"><i class="fa fa-check"></i><b>2.3.2</b> Coding Meetups</a></li>
+<li class="chapter" data-level="2.3.3" data-path="whats-data-science-and-how-do-i-do-it.html"><a href="whats-data-science-and-how-do-i-do-it.html#final-deadline"><i class="fa fa-check"></i><b>2.3.3</b> Final Deadline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-your-project.html"><a href="introduction-to-your-project.html"><i class="fa fa-check"></i><b>3</b> Introduction to Your Project</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-your-project.html"><a href="introduction-to-your-project.html#purpose-of-the-project-guide"><i class="fa fa-check"></i><b>3.1</b> Purpose of the Project Guide</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-your-project.html"><a href="introduction-to-your-project.html#what-is-this-project-about"><i class="fa fa-check"></i><b>3.2</b> What is this Project About?</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-your-project.html"><a href="introduction-to-your-project.html#exploratory-data-analysis-getting-to-know-the-data-set"><i class="fa fa-check"></i><b>3.3</b> Exploratory Data Analysis – Getting to Know the Data Set</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-your-project.html"><a href="introduction-to-your-project.html#recommendation-system"><i class="fa fa-check"></i><b>3.4</b> Recommendation System</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Exploratory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#getting-started"><i class="fa fa-check"></i><b>4.1</b> Getting started</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#discovering-the-data"><i class="fa fa-check"></i><b>4.1.1</b> Discovering the Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#give-some-overall-statements"><i class="fa fa-check"></i><b>4.1.2</b> Give some overall statements</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-cleaning-and-useful-transformations"><i class="fa fa-check"></i><b>4.2</b> Data Cleaning and Useful Transformations</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#date-formatting"><i class="fa fa-check"></i><b>4.2.1</b> Date Formatting</a></li>
+<li class="chapter" data-level="4.2.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-details-of-the-longest-movie"><i class="fa fa-check"></i><b>4.2.2</b> More details of the longest movie</a></li>
+<li class="chapter" data-level="4.2.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#a-histogram-of-the-top-10-longest-movies-duration"><i class="fa fa-check"></i><b>4.2.3</b> A histogram of the top 10 longest movies duration</a></li>
+<li class="chapter" data-level="4.2.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#visualizing-movie-durations-over-time"><i class="fa fa-check"></i><b>4.2.4</b> Visualizing movie durations over time</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#your-personal-data"><i class="fa fa-check"></i><b>4.3</b> Your personal data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#load-your-data"><i class="fa fa-check"></i><b>4.3.1</b> Load your data</a></li>
+<li class="chapter" data-level="4.3.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#clean-and-transform-dataset"><i class="fa fa-check"></i><b>4.3.2</b> Clean and transform dataset</a></li>
+<li class="chapter" data-level="4.3.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#merging-datasets-primitive-approach"><i class="fa fa-check"></i><b>4.3.3</b> Merging datasets: primitive approach</a></li>
+<li class="chapter" data-level="4.3.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#merging-datasets-advanced-approach"><i class="fa fa-check"></i><b>4.3.4</b> Merging datasets: advanced approach</a></li>
+<li class="chapter" data-level="4.3.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#dynamic-line-plot"><i class="fa fa-check"></i><b>4.3.5</b> Dynamic line plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#lets-get-personal"><i class="fa fa-check"></i><b>4.4</b> Let’s get personal</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#monthly-viewing-time-in-2021"><i class="fa fa-check"></i><b>4.4.1</b> Monthly viewing time in 2021</a></li>
+<li class="chapter" data-level="4.4.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#average-per-weekday"><i class="fa fa-check"></i><b>4.4.2</b> Average per weekday</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#binge-watching"><i class="fa fa-check"></i><b>4.5</b> Binge watching</a></li>
+<li class="chapter" data-level="4.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#scatterplot-with-marginal-density"><i class="fa fa-check"></i><b>4.6</b> Scatterplot with marginal density</a></li>
+<li class="chapter" data-level="4.7" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#word-cloud-with-your-favorite-genre"><i class="fa fa-check"></i><b>4.7</b> Word cloud with your favorite genre</a></li>
+<li class="chapter" data-level="4.8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#surprise-us"><i class="fa fa-check"></i><b>4.8</b> Surprise Us!</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exercise-checklist.html"><a href="exercise-checklist.html"><i class="fa fa-check"></i><b>5</b> Exercise Checklist</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exercise-checklist.html"><a href="exercise-checklist.html#part-1-exploratory-data-analysis-beginner-advanced-tracks"><i class="fa fa-check"></i><b>5.1</b> Part 1: Exploratory Data Analysis (Beginner + Advanced Tracks)</a></li>
+<li class="chapter" data-level="5.2" data-path="exercise-checklist.html"><a href="exercise-checklist.html#part-2-recommendation-systemmotivated-beginner-advanced-tracks"><i class="fa fa-check"></i><b>5.2</b> Part 2: Recommendation System(motivated Beginner + Advanced Tracks)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="whats-next-in-your-data-science-career.html"><a href="whats-next-in-your-data-science-career.html"><i class="fa fa-check"></i><b>6</b> What’s Next in Your Data Science Career?</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="whats-next-in-your-data-science-career.html"><a href="whats-next-in-your-data-science-career.html#continue-your-journey-on-datacamp"><i class="fa fa-check"></i><b>6.1</b> Continue your journey on DataCamp</a></li>
+<li class="chapter" data-level="6.2" data-path="whats-next-in-your-data-science-career.html"><a href="whats-next-in-your-data-science-career.html#data-science-in-general"><i class="fa fa-check"></i><b>6.2</b> Data Science in General</a></li>
+<li class="chapter" data-level="6.3" data-path="whats-next-in-your-data-science-career.html"><a href="whats-next-in-your-data-science-career.html#r"><i class="fa fa-check"></i><b>6.3</b> R</a></li>
+<li class="chapter" data-level="6.4" data-path="whats-next-in-your-data-science-career.html"><a href="whats-next-in-your-data-science-career.html#python"><i class="fa fa-check"></i><b>6.4</b> Python</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://tech-academy.io/" target="blank">&copy 2022 TechAcademy e.V.</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science Project Guide: Netflix</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploratory-data-analysis" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Exploratory Data Analysis</h1>
+<p>Before you can dive into the data, you need to do two things.
+First of all, you need to request your personal data from Netflix, which can take a few days. Therefore, you should ask for your data as early as possible.
+(If you do not have access to a Netflix account, contact your mentor, and we will provide you with some data)</p>
+<p>Download your data</p>
+<ol style="list-style-type: decimal">
+<li><p>Follow this link to request your data <a href="https://www.netflix.com/account/getmyinfo" class="uri">https://www.netflix.com/account/getmyinfo</a>, and sign in with your username and password.</p></li>
+<li><p>After that, click on the red box Submit Request.</p></li>
+<li><p>Now you need to verify your request via Mail.</p></li>
+<li><p>Once you confirm the request, you will be forwarded to the website and have to enter your password again. If your request is in progress you might have to wait a few days until the data is available to download.</p></li>
+<li><p>When you receive the mail “Your download is ready,” you can download your data by clicking on the red box Get Information. Don’t wait too long since you only have 7 days to download it from your account!</p></li>
+<li><p>After confirming your password, you can download your data as a netflix-report.zip file. Unzip the file, open the folder CONTENT_INTERACTION and look for the ViewingActivity.csv file.</p></li>
+</ol>
+<p>However, you can already start with the first exercises of this chapter with data we provide.
+To start right away, you need to set up your programming environment. This will be the place where the magic happens.</p>
+<div class="tips r">
+<p>We work with R and RStudio locally which requires a setup. If you haven’t installed it yet here is a <a href="https://www.datacamp.com/tutorial/installing-R-windows-mac-ubuntu">DataCamp tutorial</a>. If you struggle, we will help you with installing at the “Introduction to Coding” Workshop or at our first Coding Meetup</p>
+</div>
+<div class="tipsp python">
+<p>We recommend using <a href="https://colab.research.google.com">Google Colab</a> for this project since it requires no particular setup, stores its notebooks to your Google Drive, and makes it easy for you to share them with your team members.</p>
+<p>As an alternative to Google Colab, you might want to install Jupyter Notebook locally using the Anaconda distribution.
+We will give you a more detailed step-by-step demo during the “Introduction to Coding Workshop” or our first Coding Meetup.</p>
+</div>
+<div id="getting-started" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Getting started</h2>
+<div id="discovering-the-data" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Discovering the Data</h3>
+<p>The first big step is importing a general Netflix data set into your coding environment:
+* [Netflix]</p>
+<p>Once done, let’s start by looking at the Netflix data set.</p>
+<p><em>Have a look at the columns of the data set and their “values”
+</em>Do you see any missing values or data entries that are different from the other entries?
+<em>What are the data formats (e.g. data types)?
+</em>Look at the date_added columns. Do you see any critical aspects of the data?
+Write down a couple of sentences to these questions, the goal is to show (your readers) what you are seeing. Also, comment on any errors or irregularities which you notice and that could be an issue later on in the project.</p>
+<div class="tips r">
+<p>You can import data files by, for examples, using the command netflix_general &lt;- read_csv(“Netflix.csv”). However, it has to be the correct path. Use head() and glimpse() or class()(on a specific colum) to get an overview.
+Lastly, get a quick summary of the data using {base} R’s summary() or {psych}’s describe() function. To find more ways to generate quick data summaries in R, check this blog post from Adam Medcalf.
+If you need some additional, more general information on how to import data and different data types, check out this <a href="https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_data-import.pdf">cheat sheet</a>.</p>
+</div>
+<div class="tipsp python">
+<p>You can feed the links to the respective data files above to a method of the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/io.html">pandas package</a> (you might want to specify the index column). Check out the resulting pd.DataFrame instance with the head() method and the dtpyes attribute. You can also dig into a specific column with describe(). Here’s an additional <a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">pandas cheat sheet</a> for you to reference</p>
+</div>
+</div>
+<div id="give-some-overall-statements" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Give some overall statements</h3>
+<p>Now that you have imported the data set, let’s have a deeper look. Since you already got a feeling by now, it would be interesting to indicate some outstanding features (based on the uncleaned and untransfomated dataset)!</p>
+<p><em>What’s the longest movie (not TV show) included in the dataset?
+(Look very closely if your result is valid)
+</em>Which country released the most content (movies and tv shows)?
+*How many movies and tv shows are included? Try to do a simple plot here so you can see the distribution. If you cannot plot it just now, come back later to finish this.</p>
+<div class="tips r">
+<p>You could use {dplyr}’s select, filter, count and arrange function to compute the desired outcome to answer the question. If you haven’t heard of the {dplyr} package yet, take the respective DataCamp course asap!
+For the plot, look at {ggplot} and then call geom_bar(). {ggplot2}’s syntax is perhaps a bit harder to learn at the start, but it gives you more plotting benefits in the long run. If you haven’t heard of the {ggplot2} package yet, take the respective DataCamp course.</p>
+</div>
+<div class="tipsp python">
+
+</div>
+</div>
+</div>
+<div id="data-cleaning-and-useful-transformations" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Data Cleaning and Useful Transformations</h2>
+<div id="date-formatting" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Date Formatting</h3>
+<p>From exploring the data in the previous tasks you might have noticed that the time and dates are not in a “date format.” In order to fix this, convert the “date_added” and “release_year” column into date format.</p>
+<div class="tips r">
+<p>You can use the lubridate package to transform the column into a date format. To make things easier, check out the <a href="https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_lubridate.pdf">lubridate</a> cheat sheet. Converting the release year might take two steps.</p>
+</div>
+<div class="tipsp python">
+<p>pd.to_datetime() is what I would look at for example. A corresponding DataCamp resource is section 4 in <a href="https://app.datacamp.com/learn/courses/working-with-dates-and-times-in-python">Working with dates and times in Python</a>. Also, the <a href="https://app.datacamp.com/learn/courses/data-manipulation-with-pandas">Data Manipulation with pandas</a> course is of great help for the following exercises</p>
+</div>
+</div>
+<div id="more-details-of-the-longest-movie" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> More details of the longest movie</h3>
+<p>So far, you have converted the column into a more appropriate format for further investigations. Can you also fix the duration of the movies into a numeric format?
+Can you tell now what the longest movie is? On the concept of distribution, you should also try to compute the mean and standard deviation of the movie duration in minutes.</p>
+<div class="tips r">
+<p>First off, you might want to create a separate data frame for the movies so the tv shows do not bother you further. Use the filter call here.
+Next you might have recognized the “min” appendix. This can be deleted with the “gsub” call. With the help of mutate you can convert the column into numeric values and arrange the movies descending.
+For the mean and standard deviation simply use {base} R’s mean() function to compute a mean of any column in R. Similarly, R comes with the sd() function to calculate the standard deviation of a column. You can combine these two functions, e.g., in a {dplyr}’s summarise() verb.</p>
+</div>
+<div class="tipsp python">
+
+</div>
+</div>
+<div id="a-histogram-of-the-top-10-longest-movies-duration" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> A histogram of the top 10 longest movies duration</h3>
+<p>Visualizing data is essential to facilitate perception and to understand information: Create a graph to visualize the top 10 longest movies.
+We focus on creating a histogram in the tips section since it’s perhaps the most common approach for plotting. You can, however, choose a different chart type; just make sure that the information you want to display is clear and correct. However, as in school, always add axis labels when possible.</p>
+<div class="tips r">
+<p>If your data is saved as a dataframe you can perceive with the data from the previous task. Use {ggplot2} to create a histogram. Integrate top_n() before the ggplot() call and select geom_col() to achieve a histogram presentation.</p>
+</div>
+<div class="tipsp python">
+
+</div>
+</div>
+<div id="visualizing-movie-durations-over-time" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Visualizing movie durations over time</h3>
+<p>While we are at the topic of movie durations, it might also be interesting to see how the average movie length evolved: Choose and plot the chart you think is most appropriate for displaying this type of information.
+After plotting, please comment and interpret the graph: Were there any significant increases/decreases in movie length over time? If so, what could be the reason?</p>
+<div class="tips r">
+<p>Again, it’s ggplot’s turn. Instead of preparing the summarise() and mean() functions combination you can also directly integrate the adjustments in the geom_bar call with (stat = “summary,” fun = “mean”).</p>
+</div>
+<div class="tipsp python">
+
+</div>
+</div>
+</div>
+<div id="your-personal-data" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Your personal data</h2>
+<div id="load-your-data" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Load your data</h3>
+<p>You will now use the data set which you requested from Netflix. In the Netflix folder you will find the document of interest: ViewingActivity. Load this in your environment and inspect it as you did before with the Netflix Dataset.
+If you can’t request your data, ask your mentor; they will provide you with an alternative data set.</p>
+</div>
+<div id="clean-and-transform-dataset" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Clean and transform dataset</h3>
+<p>As you might have noticed, Netflix recorded every time you clicked on a movie even if you didn’t watch it. Check which column indicates those with a specific value. To avoid a bias in the following analysis, delete the respective rows. You can further drop columns that seem unnecessary or don’t give any information and change column names if you wish.
+Additionally, convert the column Duration in minutes (round them) and extract the viewing day and viewing time from “Start time” into two separate columns (e.g., “date” and “time”).</p>
+<div class="tips r">
+<p>mutate and filter are your best friends in this cleaning process.</p>
+</div>
+<div class="tipsp python">
+
+</div>
+</div>
+<div id="merging-datasets-primitive-approach" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Merging datasets: primitive approach</h3>
+<p>As a data scientist, you’ll often find yourself working with data sets from different data sources referencing the same object. For example, you might have the movie names in one file and the respective genre in a separate file. It would make more sense to just merge the two data sets into one. Indeed, this is the case with our data. Your Netflix data does not provide information on genre, actor, or director, while the general Netflix data set does. So, to make life easier for the upcoming tasks, you’ll now need to merge both data sets by the title name.</p>
+<p>There are several things kind of “wrong” with the merged data set. What is it and why?
+Tipp: You need to prepare the dataset in a way that the title, session and episode will be split into a column of title, session and episode separately in order for the two data frames to join each other properly.</p>
+<div class="tips r">
+<p>Calls such as separate(), ifelse() and rename() are suitable here. Merging can be done in several ways. You could, e.g., use {dplyr}’s left_join() to combine the two data sets based on the “left sided” dataset. Which one should be the “left-sided?”</p>
+</div>
+<div class="tipsp python">
+<p>The merge function allows for different types of merges. Try coming up with the most logical one in this scenario!</p>
+</div>
+</div>
+<div id="merging-datasets-advanced-approach" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Merging datasets: advanced approach</h3>
+<p>You might have noticed that merging the data set is a little challenging. This is because Netflix sometimes displays title, session and episode in a remixed way and also because your Netflix data might be in German whereas the general Netflix Data is in English. We fixed this issue externally and you can now send your data to Moritz Schwerdt, who will provide you with a respective general Netflix dataset.
+Now try merging again!</p>
+</div>
+<div id="dynamic-line-plot" class="section level3" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Dynamic line plot</h3>
+<p>Your goal for this task is to plot how each viewer’s activity was recorded over time. Since it would be a bit unclear in a static plot, let’s try to do a dynamic chart here!</p>
+<div class="tips r">
+<p>The data is already ready for this. Your ggplot() call might need some more input than you used before. As the graphic is supposed to be a line with points geom_line() and geom_point () will be a good choice of combination. The dynamic aspect is no magic, you just need to add the transition_reveal() call.</p>
+</div>
+<div class="tipsp python">
+
+</div>
+</div>
+</div>
+<div id="lets-get-personal" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Let’s get personal</h2>
+<p>We dived into the provided gerneral Netflix data set and a bit into your overall personal Netflix dataset, but now is the time to look into your very own Netflix history.
+First, we want to look at the longest movie you have ever watched, afterward, into your general and binge-watching behavior.
+We recommend using Tobi’s data if you are currently working with the Netflix data set provided from us.</p>
+<p>So, what’s the longest movie you have ever watched? Maybe you also want to check the day? Do you remember that day?</p>
+<div class="tips r">
+<p>filter, select and arrange will do a good job here.</p>
+</div>
+<div class="tipsp python">
+<p>Useful functions might be sort_values() and groupby().</p>
+</div>
+<div id="monthly-viewing-time-in-2021" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Monthly viewing time in 2021</h3>
+<p>Let’s get a little fancy by displaying the monthly average time you watched in 2021 (or another year of your choice).</p>
+<!-- ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"} -->
+<!-- knitr::include_graphics("plot/Starting Colonies in 2020.jpg") -->
+<!-- ``` -->
+<div class="tips r">
+<p>This task involves three steps. First, you want to extract the month from the “start_time” column, where lubridate will help you. You can then use the group_by argument to group the dataset by the month and filter for a specific year. After that, you can pipe along and directly add the third step: your ggplot call. Now, you can visualize your output however you want. The presented output is obtained by combining geom_col + coord_polar().</p>
+</div>
+<div class="tipsp python">
+<p>We recommend a stepwise course of action: first, extract the month from your date column - at this point you should have a clue which package might be able to help! Then, you should groupby month and filter for a year of your choice. The last step is the generation of your plot! A great package for this task is <a href="https://plotly.com/python/graph-objects/">plotly.graph_objects</a>. You might want to play around with the <a href="https://plotly.github.io/plotly.py-docs/generated/plotly.graph_objects.Barpolar.html">Barpolar</a> function a little to receive the desired output.</p>
+</div>
+</div>
+<div id="average-per-weekday" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Average per weekday</h3>
+<p>Our subsequent interest lies in analyzing the viewing time of specific weekdays. Either choose the whole year or a month of your interest and look at the weekday average. On which days have you watched more Netflix, can you see a peak?
+For our advanced programmers: Would it not be interesting to look at what time of the day you watch the most?</p>
+<div class="tips r">
+<p>As before, you now want to extract the weekday from the “start_time.” Further you might want to filter for a specific month or year and group by date and weekday. You will then need to sum the minutes per day and group again by weekday to summarize for the mean of the duration. Finally, you could, for example, plot a classic ggplot.</p>
+</div>
+<div class="tipsp python">
+<p>The procedure is similar to before. Get the weekday from your data, compute the sum of daily minutes of watching, and generate a bar plot. The <a href="https://seaborn.pydata.org/">seaborn package</a> is an amazing tool that generates beautiful plots with really limited code!</p>
+</div>
+</div>
+</div>
+<div id="binge-watching" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Binge watching</h2>
+<p>In this section, the goal should be to create a plot of your top 10 binge tv shows. Before you begin, you need to decide what binge watching means to you. We decided it’s at least 1 hour of a TV show per day. But you should adjust that to your watching behavior.</p>
+<div class="tips r">
+<p>Again, you could use the familiar {dplyr} verbs for this part. You first want to filter for TV Shows and group by date and title. You then need to count episodes and minutes per day and group again by title. Now, calculate the sum of episodes and minutes per day. Here you might want to convert minutes into hours. Finally, arrange everything descending.
+For the plot, you can use ggplots geom_col() or whatever you think is best to present your binge series</p>
+</div>
+<div class="tipsp python">
+
+</div>
+</div>
+<div id="scatterplot-with-marginal-density" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Scatterplot with marginal density</h2>
+<p>You have computed and visualized your favorite binge tv shows, but how has your watching behavior developed on Netflix since you first used it? This question is something we want to analyze now. There are different possibilities to explore this question. We will start by visualizing it via a scatterplot with marginal density. Include all the profile names for this task and make a visual comparison. What can the plot tell us about your watching behavior?</p>
+<div class="tips r">
+
+</div>
+<div class="tipsp python">
+<p>Again, seaborn is your best friend! The jointplot function will give you a great plot if you use it correctly.</p>
+</div>
+</div>
+<div id="word-cloud-with-your-favorite-genre" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Word cloud with your favorite genre</h2>
+<p>Until now, even though we merged the two data sets, analyzing the Netflix movies was possible by only using each one. Let’s change that! Generate a word cloud with your personal most watched genres! Is it what you expected it to be?</p>
+<div class="tips r">
+<p>Install the package “wordcloud” and start preparing your joined dataset. We are only interested in the “listed_in” column now. Use the mutate function to do a structure split, so each genre will get its row instead of being separated by a comma. Add unnest to your call. Extract the column and fix possible issues (e.g., white space). An easy way is to use the table() call on the listed_in and change the table directly into a data frame.
+For the word cloud, set a seed if you want to get the same cloud every time you run the code. The call wordcloud only needs to be filled with the respective word and frequency column. Feel free to spice it up!</p>
+</div>
+<div class="tipsp python">
+
+</div>
+</div>
+<div id="surprise-us" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Surprise Us!</h2>
+<p>This section only scratches the surface of what is possible with your Netflix data and some columns haven’t even been analyzed. Have you discovered anything cool and/or want to experiment with a new visualization technique to deliver a message? Here is the right place to put down anything you did and would like to do with the project that did not quite fit in the other exercise sections. If you are looking for some visualization inspiration, check out this page.
+Congratulations! Based on your work with fundamental data transformations and many visualizations, you now have a solid understanding of the Netflix data sets and your personal data! With this, you have completed the EDA part of the project! Don’t forget to send your project results to our project submission email address (<a href="mailto:projekt@tech-academy.io" class="email">projekt@tech-academy.io</a>) before the deadline (05.02.2023, 23:59). Thanks for being a part of TechAcademy!
+If you are in the advanced track your coding journey goes on with the next section!</p>
+
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-your-project.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise-checklist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Netflix.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

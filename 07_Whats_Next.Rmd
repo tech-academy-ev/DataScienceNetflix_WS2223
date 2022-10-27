@@ -9,7 +9,7 @@ editor_options:
 # What's Next in Your Data Science Career?
 
 ## Continue your journey on DataCamp 
-You can continue learning on DataCamp until the start of the next Semester! Check out the Tracks (Skill and Career Tracks) and make sure to complete them to receives DataCamp's Statement of Accomplishment.
+You can continue learning on DataCamp until the start of the next Semester! Check out the [Skill](https://app.datacamp.com/learn/skill-tracks) and [Career Tracks](https://app.datacamp.com/learn/career-tracks) and make sure to complete them to receives DataCamp's Statement of Accomplishment.
 
 ## Data Science in General
 
@@ -20,7 +20,6 @@ You can continue learning on DataCamp until the start of the next Semester! Chec
 ### Learn from Great Data Scientists on [Kaggle](https://www.kaggle.com/) {.unlisted .unnumbered}
 
 ### Great insights and helpful tips on [towardsdatascience](https://towardsdatascience.com/) {.unlisted .unnumbered}
-
 
 
 ## R

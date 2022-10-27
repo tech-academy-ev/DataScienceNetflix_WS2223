@@ -15,7 +15,7 @@ Questions might come up, or you might not know how to solve a task right away—
 At the end of the project guide, you will find an overview of all tasks that have to be completed, depending on your track (beginner/advanced). You can use this list to check which tasks you still need to complete or which assignments are relevant for your track.
 
 ## What is this Project About?
-This semester, we will have a look at Netflix data! More precisely, we are first analyzing a very detailed general Netflix data set, compiled on [kaggle](https://www.kaggle.com/datasets/kyleahmurphy/nass-honey-bee-20152021?select=NASS_Bee-Stressors_2015-2021.csv), after which you will get the chance to look at your own Netflix data. You will find all kinds of information in the data sets - valuable and useless ones.
+This semester, we will have a look at Netflix data! More precisely, we are first analyzing a very detailed general Netflix data set, compiled on [kaggle](https://www.kaggle.com/datasets/shivamb/netflix-shows), after which you will get the chance to look at your own Netflix data. You will find all kinds of information in the data sets - valuable and useless ones.
 Are you already curious to see for yourself? In analogy to the typical Data Science workflow, we split this project into two parts. 
 
 

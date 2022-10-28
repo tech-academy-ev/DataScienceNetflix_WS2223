@@ -10,8 +10,8 @@ editor_options:
 
 ## Purpose of the Project Guide
 This document will guide you through the different steps of your project and will provide you with valuable hints along the way. However, it is not a detailed step-by-step manual because we felt like you needed to develop the skills of coming up with your way of solving different tasks. This method is a great way to apply the knowledge and tools you have acquired through DataCamp.
-Since data science concepts are independent of specific programming languages, we will describe the general approach in a text chunk. Having understood the bigger picture and starting with the tasks, you will find language-specific tips and tricks in visually separated boxes (R -Track : blue-bordered boxes, Python - Track : yellow-bordered boxes).
-Questions might come up, or you might not know how to solve a task right away—but don’t worry—this is just part of coding. In those cases, you could ask your team members for help. If they are not able to help, and in the unlikely case that even Google can’t help you, the TechAcademy mentors will help you via Slack or directly during the coding meetups.
+Since data science concepts are independent of specific programming languages, we will describe the general approach in a text chunk. Having understood the bigger picture and starting with the tasks, you will find language-specific tips and tricks in visually separated boxes (`R` -Track : blue-bordered boxes, `Python` - Track : yellow-bordered boxes).
+Questions might come up, or you might not know how to solve a task right away—but don’t worry—this is just part of coding. In those cases, you could ask your fellow team member for help. If they are not able to help, and in the unlikely case that even Google can’t help you, the TechAcademy mentors will help you via Slack or directly during the coding meetups.
 At the end of the project guide, you will find an overview of all tasks that have to be completed, depending on your track (beginner/advanced). You can use this list to check which tasks you still need to complete or which assignments are relevant for your track.
 
 ## What is this Project About?

@@ -40,8 +40,8 @@ scatterplot-with-marginal-density
 word-cloud-with-your-favorite-genre
 surprise-us
 exercise-checklist
-part-1-exploratory-data-analysis-beginner-advanced-tracks
-part-2-recommendation-systemmotivated-beginner-advanced-tracks
+part-1-exploratory-data-analysis-beginner-advanced
+part-2-recommendation-systemmotivated-beginner-advanced
 whats-next-in-your-data-science-career
 continue-your-journey-on-datacamp
 data-science-in-general

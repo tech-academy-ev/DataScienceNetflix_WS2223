@@ -8,18 +8,18 @@ editor_options:
 
 # Exercise Checklist
 
-This checklist should help you keep track of your exercises. Remember that you have to hand in satisfactory solutions to at least *two-thirds* of the exercises. If you're part of the beginner track, this refers to two-thirds of section 4 (EDA) only. If you're part of the advanced track, you have to hand in at least two-thirds of  section 4 and 5. Hence, you'll need at least 66% in each of the two sections for a certificate.
+This checklist should help you keep track of your exercises. Remember that you have to hand in satisfactory solutions of the exercises. If you're part of the beginner track, this refers to section 4 (EDA) only. If you're part of the advanced track, you have to hand in section 4 and 5.
 
-## Part 1: Exploratory Data Analysis (Beginner + Advanced Tracks)
+## Part 1: Exploratory Data Analysis (Beginner + Advanced)
 
-### &check;  You completed at least 6 courses on Datacamp.{.unlisted .unnumbered} 
-### &check;  You completed section 4 and handed your project at least 3 times in.{.unlisted .unnumbered}
-### &check;  You checked that you included everything you coded in the right order and added explanatory comments.{.unlisted .unnumbered} 
-### &check;  You have all your output in the desired format.{.unlisted .unnumbered}
-### &check;  You compared your output with your group.{.unlisted .unnumbered}
-### &check;  You sent your final work to **projekt@tech-academy.io** (Remeber: Each team member has to hand in their final work individually, in any case it can be the same  within the group).{.unlisted .unnumbered}
+- You completed at least 6 courses on Datacamp. &check;
+- You completed section 4 and handed your project in at least 3 times. &check;
+- You checked that you included everything you coded in the right order and added explanatory comments.  &check;
+- You have all your output in the desired format. &check;
+- You compared your output with your group. &check;
+- You sent your final work to **projekt@tech-academy.io** (Remember: Each team member has to hand in their final work individually, in any case it can be the same  within the group). &check; 
 
-## Part 2: Recommendation System(motivated Beginner + Advanced Tracks)
+## Part 2: Recommendation System (motivated Beginner + Advanced)
 
-### &check;  Everything of the above stated. {.unlisted .unnumbered}
-### &check;  **In addition** you also completed section 5 and handed your project at least 3 times in. {.unlisted .unnumbered}
+- Everything of the above stated. &check;
+- **In addition** you also completed section 5 and handed your project in at least 3 times. &check;

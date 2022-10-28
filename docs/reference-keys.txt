@@ -1,10 +1,10 @@
 welcome
 whats-data-science-and-how-do-i-do-it
-whats-r
+whats-r-and-datacamp-courses
 rstudio
 datacamp-courses-and-curriculum
 helpful-links
-whats-python
+whats-python-and-datacamp-courses
 anaconda-and-jupyter
 datacamp-courses-and-curriculum-1
 helpful-links-1
@@ -41,7 +41,7 @@ word-cloud-with-your-favorite-genre
 surprise-us
 exercise-checklist
 part-1-exploratory-data-analysis-beginner-advanced
-part-2-recommendation-systemmotivated-beginner-advanced
+part-2-recommendation-system-motivated-beginner-advanced
 whats-next-in-your-data-science-career
 continue-your-journey-on-datacamp
 data-science-in-general

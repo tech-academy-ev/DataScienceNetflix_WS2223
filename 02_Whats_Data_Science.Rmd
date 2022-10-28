@@ -43,21 +43,21 @@ After completing the curriculum and the project's requirements, you will receive
 
 1. [Introduction to R (4h)](https://www.datacamp.com/courses/free-introduction-to-r)
 2. [Intermediate R (6h)](https://www.datacamp.com/courses/intermediate-r)
-3. [Data Manipulation with dplyr (4h)] (https://www.datacamp.com/courses/data-manipulation-with-dplyr-in-r)
+3. [Data Manipulation with dplyr (4h)](https://www.datacamp.com/courses/data-manipulation-with-dplyr-in-r)
 4. [Cleaning Data in R (4h)] (https://www.datacamp.com/courses/cleaning-data-in-r)
-5. [Introduction to Data Visualization with ggplot2 (4h)] (https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
-6. [Exploratory Data Analysis in R (4h)] (https://www.datacamp.com/courses/exploratory-data-analysis)
-7. [Reporting with R Markdown (4h)] (https://app.datacamp.com/learn/courses/reporting-with-rmarkdown)
+5. [Introduction to Data Visualization with ggplot2 (4h)](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
+6. [Exploratory Data Analysis in R (4h)](https://www.datacamp.com/courses/exploratory-data-analysis)
+7. [Reporting with R Markdown (4h)](https://app.datacamp.com/learn/courses/reporting-with-rmarkdown)
 
 **Data Science in R (Advanced)**
 
 1.  [Intermediate R (6h)](https://www.datacamp.com/courses/intermediate-r)
-2.  [Data Manipulation with dplyr (4h)] (https://www.datacamp.com/courses/data-manipulation-with-dplyr-in-r)
+2.  [Data Manipulation with dplyr (4h)]https://www.datacamp.com/courses/data-manipulation-with-dplyr-in-r)
 3.  [Cleaning Data in R (4h)] (https://www.datacamp.com/courses/cleaning-data-in-r)
-4.  [Introduction to Data Visualization with ggplot2 (4h)] (https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
-5.  [Text Mining with Bag-of-Words in R (4h)] (https://app.datacamp.com/learn/courses/text-mining-with-bag-of-words-in-r)
+4.  [Introduction to Data Visualization with ggplot2 (4h)](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
+5.  [Text Mining with Bag-of-Words in R (4h)](https://app.datacamp.com/learn/courses/text-mining-with-bag-of-words-in-r)
 6.  [Writing Efficient R Code (4h)](https://www.datacamp.com/courses/writing-efficient-r-code)
-7.  [Reporting with R Markdown (4h)] (https://app.datacamp.com/learn/courses/reporting-with-rmarkdown)
+7.  [Reporting with R Markdown (4h)](https://app.datacamp.com/learn/courses/reporting-with-rmarkdown)
 
 
 **Data Science in R (Advanced) -- Exchange Pool**

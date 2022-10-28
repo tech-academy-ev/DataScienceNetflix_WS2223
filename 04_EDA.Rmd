@@ -68,14 +68,16 @@ We will give you a more detailed step-by-step demo during the "Introduction to C
 ### Discovering the Data
 
 The first big step is importing a general Netflix data set into your coding environment: 
-* [Netflix]
+
+- [Netflix](https://drive.google.com/uc?export=download&id=1HZcCeifLUN62Zq92cVI3DKoT3EgqdBxD8EFCvQIJvDc)
 
 Once done, let’s start by looking at the Netflix data set.
 
-*Have a look at the columns of the data set and their “values” 
-*Do you see any missing values or data entries that are different from the other entries?
-*What are the data formats (e.g. data types)?
-*Look at the date_added columns. Do you see any critical aspects of the data?
+ - Have a look at the columns of the data set and their “values” 
+ - Do you see any missing values or data entries that are different from the other entries?
+ - What are the data formats (e.g. data types)?
+ - Look at the date_added columns. Do you see any critical aspects of the data?
+
 Write down a couple of sentences to these questions, the goal is to show (your readers) what you are seeing. Also, comment on any errors or irregularities which you notice and that could be an issue later on in the project. 
 
 
@@ -94,10 +96,10 @@ You can feed the links to the respective data files above to a method of the [pa
 
 Now that you have imported the data set, let's have a deeper look. Since you already got a feeling by now, it would be interesting to indicate some outstanding features (based on the uncleaned and untransfomated dataset)!
 
-*What's the longest movie (not TV show) included in the dataset?
+- What's the longest movie (not TV show) included in the dataset?
 (Look very closely if your result is valid)
-*Which country released the most content (movies and tv shows)?
-*How many movies and tv shows are included? Try to do a simple plot here so you can see the distribution. If you cannot plot it just now, come back later to finish this.
+- Which country released the most content (movies and tv shows)?
+- How many movies and tv shows are included? Try to do a simple plot here so you can see the distribution. If you cannot plot it just now, come back later to finish this.
 
 ::: {.tips .r data-latex="r"}
 You could use {dplyr}’s select, filter, count and arrange function to compute the desired outcome to answer the question. If you haven’t heard of the {dplyr} package yet, take the respective DataCamp course asap!
@@ -252,9 +254,9 @@ Let’s get a little fancy by displaying the monthly average time you watched in
 
 ```
 
-<!-- ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"} -->
-<!-- knitr::include_graphics("plot/Starting Colonies in 2020.jpg") -->
-<!-- ``` -->
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+knitr::include_graphics("plot/Cat03.jpg")
+```
 
 ::: {.tips .r data-latex="r"}
 This task involves three steps. First, you want to extract the month from the “start_time” column, where lubridate will help you. You can then use the group_by argument to group the dataset by the month and filter for a specific year. After that, you can pipe along and directly add the third step: your ggplot call. Now, you can visualize your output however you want. The presented output is obtained by combining geom_col + coord_polar().

@@ -9,7 +9,7 @@ editor_options:
 # Content-based recommendation System
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/netflix_rec.jpg")
 ```
 
 Though Netflix offers many movies, it has a great recommendation system customized for every viewer (otherwise, we would probably be overwhelmed). So let's get to the bottom of this system and build your personalized system!
@@ -29,7 +29,7 @@ We will walk you through the theory by looking at the description column. The ap
 To calculate the similarity between two movies/shows regarding the description, you need to first prep the column. Therefore, you need to collect all words used in the entire description column, generate new columns with each word as titles, and fill in the cells for each movie/show with 1's if the word appears or 0's if it doesn’t appear. In the below chart, you can see what we mean :)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/bag_of_words.jpg")
 ```
 
 The matrix on the right hand side is called a “Document Term Matrix”.
@@ -44,7 +44,7 @@ If you are in the R track then please read the following section. Python coders 
 Before we can calculate the cosine similarity matrix, you first need to transpose the matrix. What does that mean? You have to switch the rows to columns and the other way around. We have visualized the idea below. (If you don’t transpose the matrix, you will calculate the similarity between each word instead of each movie.)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/transpose.jpg")
 ```
 
 Now let’s check out that scary word "cosine similarity." In our case, it calculates the similarity between two items (movies/shows) based on the description column. Mathematical speaking, "it measures the cosine of the angle between two vectors projected in a multi-dimensional space." If you are further interested in the mathematical idea/function, you can check out this website https://www.sciencedirect.com/topics/computer-science/cosine-similarity. 
@@ -53,7 +53,7 @@ Though, this is not necessary for you to build the recommendation engine since R
 The matrix below shows how the output should look like. If two movies/shows are identical, they have the value 1, and with no similarities, the value 0.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/cosine_sim.jpg")
 ```
 
 So, in this case, movie 1 and 3 have the highest similarity (the identical movies have, of course, the value 1, but they aren't interesting since we want a recommendation system with new movies). In contrast, movie 1 and 2 have the lowest similarity.
@@ -65,13 +65,13 @@ For example, movie 3 was the last movie you watched. Now you need to build a dat
 For example, if you say that description, genre and actors are all equally important to you, then you can choose for each a 1/3 share: 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/formula.jpg")
 ```
 
 You can see in the below graph what we mean :)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/final_mat.jpg")
 ```
 
 In this case, movie 1 has a higher similarity than movie 2 regarding movie 3, so your recommendation would be to watch movie 1. 
@@ -90,7 +90,7 @@ As mentioned in the theory chapter, you need to extract all words from the descr
 Below you can see the example for the description column.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/bag_of_words.jpg")
 ```
 
 ### Creating a corpus
@@ -130,7 +130,7 @@ It explains how to create a document term matrix by editing the words mentioned 
 Let’s move forward to the cosine similarity matrix! Remember, you need 3 matrices for description, genre, and actors. Below you can see what your output should look like.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/cosine_sim.jpg")
 ```
 
 ### Preparation for R only
@@ -138,7 +138,7 @@ knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
 Before you can start using the cosine similarity function, you first need to transform the document term matrix to a matrix to transpose it (so that the movie titles are in the column and the words represented in the rows.) If you have completed that, you can continue with transposing the matrix.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Correlations using Pearson Method.jpg")
+knitr::include_graphics("plot/transpose.jpg")
 ```
 
 After transposing the matrix, you can add the title names in the columns if you haven't done that before.
@@ -168,7 +168,7 @@ You are almost there, so don’t give up! Before you start coding your final par
 So in our example, Tobis last watched movie/show was Breaking Bad, and as recommendations, we got:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Regression_Table_POLS_only.PNG")
+knitr::include_graphics("plot/tobi_rec.jpg")
 ```
 
 There are some very interesting recommendations, but most of them make sense, so it worked! Now it’s your turn!
@@ -177,7 +177,7 @@ One of the challenges is that not every public data set might include your last-
 That is why we worked with a simple for loop, which iterates over your last seen movies/shows and first checks if the public data set includes that movie/show, and if so, you can build your data frame as mentioned in theory:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Regression_Table_POLS_only.PNG")
+knitr::include_graphics("plot/final_mat.PNG")
 ```
 
 So you take out of each similarity matrix (description/genre/actors) the column of your last seen movie and create a final similarity column. As already mentioned, you can weigh the aspects (description/genre/actors) differently and check what happens to your recommendations.
@@ -185,7 +185,7 @@ So you take out of each similarity matrix (description/genre/actors) the column 
 For example, if you say that description, genre and actors are all equally important to you, then you can choose for each a 1/3 share: 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Regression_Table_POLS_only.PNG")
+knitr::include_graphics("plot/formula.jpg")
 ```
 
 For instance: I have looked at recommendations for “Inception,” and one of them was “Lord of the Rings,” but once I changed my priorities/weighting, that recommendation changed.

@@ -35,14 +35,16 @@ Download your data
 1. Follow this link to request your data https://www.netflix.com/account/getmyinfo, and sign in with your username and password.
 2. After that, click on the red box Submit Request.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"
+knitr::include_graphics("plot/request.jpg")}
 
 ```
 
 3. Now you need to verify your request via Mail.
 4. Once you confirm the request, you will be forwarded to the website and have to enter your password again. If your request is in progress you might have to wait a few days until the data is available to download.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"
+knitr::include_graphics("plot/request_progress.jpg")}
 
 ```
 

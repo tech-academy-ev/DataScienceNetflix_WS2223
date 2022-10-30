@@ -1,0 +1,401 @@
+---
+title: "First Netflix Ana"
+author: "Isi"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r installing packages, include=FALSE}
+install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+install.packages("ggplot2", repos = "http://cran.us.r-project.org")
+install.packages("ggthemes", repos = "http://cran.us.r-project.org")
+install.packages("leaflet", repos = "http://cran.us.r-project.org")
+install.packages("lubridate", repos = "http://cran.us.r-project.org")
+install.packages("plotly", repos = "http://cran.us.r-project.org")
+install.packages("readr", repos = "http://cran.us.r-project.org")
+install.packages("tidyr", repos = "http://cran.us.r-project.org")
+install.packages("chron", repos = "http://cran.us.r-project.org")
+install.packages("gganimate", repos = "http://cran.us.r-project.org")
+install.packages("hrbrthemes", repos = "http://cran.us.r-project.org")
+install.packages("viridis", repos = "http://cran.us.r-project.org")
+install.packages("gifski", repos = "http://cran.us.r-project.org")
+install.packages("ggside")
+install.packages("ggExtra")
+install.packages("tm")  # for text mining
+install.packages("SnowballC") # for text stemming
+install.packages("wordcloud") # word-cloud generator 
+install.packages("RColorBrewer") # color palettes
+```
+
+```{r loading packages, include=FALSE}
+library(readr)
+library(tidyverse)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+library(ggthemes)
+library(leaflet)
+library(plotly)
+library(chron)
+library(gganimate)
+library(hrbrthemes)
+library(viridis)
+library(gifski)
+library(ggside)
+library(ggExtra)
+library("tm")
+library("SnowballC")
+library("wordcloud")
+library("RColorBrewer")
+library(plotly)
+library(gapminder)
+```
+##FIRST PART
+###First Steps
+Load and inspect Data of general Netflix data 
+
+```{r, warning=FALSE}
+netflix_data_general <- read_csv("\\Users\\is150\\Downloads\\archive\\netflix_titles.csv")
+```
+
+Whats the longest movie ? subconscious 
+```{r, warning=FALSE}
+netflix_data_general %>%  
+  select(type, title, duration) %>% 
+  filter(type == "Movie") %>% 
+  arrange(desc(duration))
+
+```
+
+Country with the most added movies or tv shows.
+```{r, warning=FALSE}
+
+netflix_data_general %>%  
+  select(country) %>% 
+  count(country) %>% 
+  arrange(desc(n))
+```
+
+How many movies and tv shows are included?
+
+```{r, warning=FALSE}
+
+firtBarplot <- netflix_data_general %>%  
+  select(country, type) %>% 
+  count(type) 
+
+ggplot(firtBarplot,aes(type, n)) +
+  geom_bar(stat = "identity")
+```
+
+## Data transformation
+
+```{r}
+netflix_data_general$date_added <- mdy(netflix_data_general$date_added)
+netflix_data_general$release_year <- as.Date(as.character(netflix_data_general$release_year), format = "%Y")
+netflix_data_general$release_year <- year(netflix_data_general$release_year)
+```
+
+longest movie +  histogram
+
+```{r}
+netflix_data_general$duration<- gsub("min", "",netflix_data_general$duration )
+
+netflix_data_general_subset <- netflix_data_general %>% 
+  select(c(type, title, duration, release_year)) %>% 
+  filter(type == "Movie") %>%
+  mutate(duration_min = as.numeric(duration))%>% 
+  arrange(desc(duration_min))
+
+netflix_data_general_subset
+```
+
+Histogram of duration of minutes
+
+```{r}
+
+netflix_data_general_subset <- netflix_data_general_subset %>% 
+  filter(type == "Movie")
+
+netflix_data_general_subset %>% 
+ summarise(across(duration_min, ~ mean(.x, na.rm = TRUE)))
+
+netflix_data_general_subset %>% 
+ summarise(across(duration_min, ~ sd(.x, na.rm = TRUE)))
+
+netflix_data_general_subset %>% 
+  top_n(n=10, duration_min) %>% 
+  ggplot(., aes(x = reorder(title, duration_min), y =duration_min, fill=title)) + 
+  geom_col(show.legend = F, fill = "darkred") +
+  coord_flip()+
+  ggtitle("Histogram of Movie duration")+ # for the main title
+  xlab("title")+
+  theme(plot.title = element_text(hjust = 0.5))
+ 
+
+```
+```{r}
+  ggplot(netflix_data_general_subset, aes(release_year,duration_min)) + 
+  geom_bar(stat = "summary", fun = "mean")+
+  geom_smooth(aes(group = 1), se =FALSE)
+  
+
+```
+
+
+## SECOND PART 
+###First Steps
+
+```{r}
+netflix_data <- read_csv("\\Users\\is150\\Downloads\\Netflix\\CONTENT_INTERACTION\\ViewingActivity.csv")
+```
+
+```{r}
+head(netflix_data)
+str(netflix_data)
+```
+
+
+Duration in Zeit umwandeln + Start Time in Uhrzeit + Datum aufsplitten
+```{r}
+netflix_data <- netflix_data %>%
+  mutate(duration_min=as.numeric(as.duration(hms(Duration))/60)) %>%
+  mutate(date=as.Date(`Start Time`),.after=`Start Time`) %>%
+  mutate_if(is.numeric,round,0)
+
+netflix_data$time <- format(netflix_data$`Start Time`,'%H:%M:%S')
+```
+
+Alle Zeilen rauslöschen mit 0 Minuten & Trailer rauslöschen !"Autoplayed: user action: None!
+```{r}
+
+netflix_data <- netflix_data %>%
+  filter(Duration>0,!`Supplemental Video Type`%in% c("TRAILER")) %>% 
+  filter(Attributes != "Autoplayed: user action: None;")
+
+```
+
+Drop unnötige columns: Attributes, supplemental video type, device type, bookmark, latest bookmark, country
+```{r}
+netflix_data <- netflix_data %>%
+  select(-c(Attributes,`Supplemental Video Type`,`Device Type`,Bookmark,`Latest Bookmark`))
+```
+
+Schönere Spaltennamen
+```{r}
+netflix_data <- netflix_data %>%
+  rename(profile_name=`Profile Name`, start_time=`Start Time`)
+```
+
+
+Split Serie in Staffel und Folge
+```{r}
+netflix_data <- netflix_data %>%
+  mutate(title_duplicate=Title) %>%
+  separate(col = title_duplicate, into = c("title", "season", "episode"), sep = ': ')
+```
+Problem: manche Filmtitel sind auch mit : getrennt, daher sind Spalte "Chapter" und "Episode" nicht immer richtig.
+Lösung: extra column für movie/series, um den Titel korrekt darzustellen.
+```{r}
+netflix_data$category <- "TV Show"
+netflix_data$category[is.na(netflix_data$episode)==TRUE] <- "Movie"
+```
+Jetzt richtigen Titel einfügen
+```{r}
+netflix_data <- netflix_data %>%
+  mutate(title_new = ifelse(category=="Movie", Title, title))
+```
+
+
+## Join Data Set
+Diese richtigen Titel brauchen wir unter anderem dafür, diese Daten mit weiteren Netflix Daten bzgl. Regisseur, Kategorie usw. zu joinen.
+
+1.) Vorbereitungen
+```{r}
+head(netflix_data_general)
+netflix_data_general <- netflix_data_general %>%
+  rename(title_new=title)
+```
+
+2.) Joinen
+```{r}
+join_netflix <- left_join(netflix_data,netflix_data_general,by="title_new", all.netflix_test=TRUE)
+```
+
+
+Dataset includes movies up to Sep 9, 2021 --> das erklärt, warum so viele Daten verloren gegangen sind 
+
+Clean Dataset join_netflix and get rid of überflüssige columns
+```{r}
+str(join_netflix)
+join_netflix <- join_netflix %>%
+  select(-c(title,episode,season,category,rating,description))
+
+join_netflix_movies <- join_netflix %>% 
+  filter (type == "Movie")
+```
+
+## Dynamic Charts with all users
+
+```{r}
+netflix_data %>%
+  ggplot( aes(x=start_time, y=Duration, group=profile_name, color=profile_name)) +
+  geom_line() +
+  geom_point() +
+  scale_color_viridis(discrete = TRUE) +
+  ggtitle("Watch time in min over time") +
+  theme_ipsum() +
+  ylab("Watching time in minutes")+
+  transition_reveal(start_time)
+
+
+fig <- netflix_data %>%
+  plot_ly(
+    x = ~start_time, 
+    y = ~Duration, 
+    color = ~profile_name, 
+    frame = ~start_time, 
+    hoverinfo = "text",
+    type = 'scatter',
+    mode = 'markers'
+  )
+fig <- fig %>% layout(
+    xaxis = list(
+      type = "log"
+    )
+  )
+
+fig
+```
+Kann man eventuell statt mit Usern auch mit Kategorien machen? 
+
+# Analyse mit Tobis Netflix Daten
+
+1.) Nach Tobi filtern
+```{r}
+netflix_tobi <- join_netflix %>%
+  filter(profile_name=="Tobi")
+```
+
+Längster Film, den man angeschaut hat
+```{r}
+netflix_tobi %>%
+  select(Title,Duration) %>%
+  arrange(desc(Duration))
+```
+
+2.) In welchen Monaten schaut Tobi am meisten? hier nur 2021
+```{r}
+netflix_tobi$month <- (months(netflix_tobi$start_time))
+
+netflix_tobi$month <- factor(netflix_tobi$month,c("Januar","Februar","März","April","Juni","Juli","August", "September", "Oktober", "November", "Dezember"))
+
+month_analysis <- netflix_tobi %>% 
+  group_by(month) %>%
+  filter(str_detect(start_time, "2021")) %>%
+  mutate(month2020 = fct_relevel(month, 
+                            "Januar","Februar","März","April","Juni","Juli","August", "September", "Oktober", "November", "Dezember")) 
+  ggplot(month_analysis, aes(month2020, Duration)) +
+  geom_col(fill = '#b20710') +
+  coord_polar()  +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x = element_text(face = "bold"),
+        plot.title = element_text(size = 18, face = "bold")) +
+    scale_x_discrete(limits = c("Januar","Februar","März","April","Juni","Juli","August", "September", "Oktober", "November", "Dezember"))+
+  ggtitle("Monthly viewing time", "Watching activity on my Netflix") 
+  
+month_analysis
+
+```
+
+
+An welchem Wochentag schaut Tobi am meisten im Juli 2021?
+```{r}
+
+netflix_tobi$day_name <- weekdays(as.Date(netflix_tobi$start_time))
+
+weekday_analysis <- netflix_tobi %>%
+  select(day_name,duration_min,date) %>%
+  filter(str_detect(netflix_tobi$date, "2021")) %>% 
+  group_by(date, day_name) %>% 
+  summarise(minutes_per_day = sum(duration_min)) %>%
+  group_by(day_name) %>% 
+  summarise(avg_duration=mean(minutes_per_day)) 
+  
+  
+  ggplot(weekday_analysis,aes(x=day_name,y=avg_duration))+
+  geom_bar(stat="identity", fill='#221f1f')+
+    scale_x_discrete(limits = c("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"))+
+  theme_minimal()
+
+
+```
+
+
+## Binge Watching
+
+1.) filter by TV Show and group by date and title. Count episodes per day and minutes.
+2.) filter by at least 1 hour of tv show per day and group by title (man kann auch andere Definition nehmen)
+3.) calculate sum of episodes per day and minutes per day (umwandeln von min in h) --> arrange descending
+
+```{r}
+
+binge_tobi <- netflix_tobi %>%
+  filter(type=="TV Show") %>%
+  group_by(date,title_new) %>%
+  summarise(episodes_per_day = n(), minutes_per_day = sum(duration_min)) %>%
+  filter(minutes_per_day >= 60) %>%
+  group_by(title_new) %>%
+  summarise(binge_episodes = sum(episodes_per_day), binge_minutes = sum(minutes_per_day)) %>%
+  mutate(binge_hours = binge_minutes/60) %>%
+  arrange(desc(binge_hours))
+```
+
+Plot Top 10 binge series
+```{r}
+binge_tobi %>%
+  top_n(10) %>%
+  ggplot(aes(x = reorder(title_new, binge_hours), y = binge_hours)) +
+  geom_col(fill =  '#e50914') +
+  coord_flip() +
+  ggtitle("Top 10 binge series on Netflix", "min of 60 minutes per day") +
+  labs(x = "Serie on Netflix", y = "Watching time in hours of a TV Show") +
+  theme_minimal()
+```
+
+ Scatterplot with marginal density : falls jemand die density für die zeit hinbekommt, please update! mit histogram geht's
+
+```{r}
+#ggExtra
+p <- ggplot(netflix_data, aes(duration_min, start_time, color= profile_name)) + geom_point() + theme_classic()
+ggExtra::ggMarginal(p, type = "density", groupColour = TRUE, groupFill = TRUE)
+
+
+ggplot(netflix_data, aes(duration_min, start_time, color= profile_name)) + geom_point() + theme_classic()
+ggExtra::ggMarginal(p, type = "histogram", groupColour = TRUE, groupFill = TRUE)
+
+
+```
+Word cloud
+```{r}
+join_netflix_movies <- join_netflix_movies %>% 
+  mutate(listed_in = strsplit(as.character(listed_in), ",")) %>%
+  unnest(listed_in)
+
+listed_in <- join_netflix_movies$listed_in
+listed_in <- gsub(" ", "", listed_in , fixed = TRUE)
+
+m <- as.data.frame(table(listed_in))
+
+set.seed(1234)
+wordcloud(words = m$listed_in, freq = m$Freq, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+
+```

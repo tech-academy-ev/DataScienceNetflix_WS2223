@@ -99,11 +99,15 @@ Before you start, you first need to create a corpus to vectorize the words in ea
 
 ::: {.tips .r data-latex="r"}
 We recommend using the tm and SnowballC packages. Check out this [website](https://thibaut-deveraux.medium.com/how-to-create-a-bag-of-words-embedding-in-r-e609095ebf53). This article gets interesting/relevant, starting with the title “Create the bag of words.”
-
 :::
 
 ::: {.tipsp .python data-latex="p"}
-
+Since there is not a package that reliably builds a term document matrix, which is applicable to a recommendation system, you have to build it on your own. Sounds really challenging and it is kinda true. It is comparable to the steps that are done by the function in R (look tipp above). The most important functions used are here:
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+knitr::include_graphics("plot/python_bow.jpg")
+```
+Where you have to apply those is in your hands. 
+For the data preparations we would recommend using **lambda functions**. There are some necessary changes to the dataframes to work with it in later steps. :)
 :::
 
 
@@ -121,7 +125,11 @@ It explains how to create a document term matrix by editing the words mentioned 
 :::
 
 ::: {.tipsp .python data-latex="p"}
-
+Again at this point this function might be helpful:
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+knitr::include_graphics("plot/python_dtm.jpg")
+```
+You can use this function on all columns that are relevant for you. After that you can fit a matrix on this column. You still have to rename some stuff after that, but we leave that to you. 
 :::
 
 
@@ -133,7 +141,7 @@ Let’s move forward to the cosine similarity matrix! Remember, you need 3 matri
 knitr::include_graphics("plot/cosine_sim.jpg")
 ```
 
-### Preparation for R only
+### Preparation for *R* only
 
 Before you can start using the cosine similarity function, you first need to transform the document term matrix to a matrix to transpose it (so that the movie titles are in the column and the words represented in the rows.) If you have completed that, you can continue with transposing the matrix.
 
@@ -145,6 +153,10 @@ After transposing the matrix, you can add the title names in the columns if you 
 
 ::: {.tips .r data-latex="r"}
 You can transpose the matrix with the basic R package, so you don’t need to install anything further.
+:::
+
+::: {.tipsp .python data-latex="p"}
+Transposition of the matrix is not needed in Python. You can simply use the cosine similarity in the sklearn library. But you should be aware of the index, columns  and data type after using it.
 :::
 
 
@@ -159,7 +171,7 @@ After calculating the cosine similarity function, you might want to transform it
 :::
 
 ::: {.tipsp .python data-latex="p"}
-
+In Python you have to do all the steps for every column you use for the recommendation separately. For some columns you have to use the functions in a slightly different way.
 :::
 
 ## Recommendations

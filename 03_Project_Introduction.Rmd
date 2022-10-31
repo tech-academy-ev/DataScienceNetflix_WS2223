@@ -24,5 +24,5 @@ This first part of the project is structured in a way that lets you get to know 
 If you get stuck, **Google** and [StackOverflow](https://stackoverflow.com/) are amazing problem solver (besides the mentors, of course).
 
 
-## Recommendation System
+## Content-Based Recommendation System
 This part is mainly for the advanced TechAcademy participants. If you are a beginner and you were able to complete the first part without too many difficulties, we highly recommend trying to do the second part as well. 

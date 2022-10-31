@@ -49,20 +49,18 @@ First of all, you need to request your personal data from Netflix, which can tak
  
 Download your data
 
-1. Follow this link to request your data https://www.netflix.com/account/getmyinfo, and sign in with your username and password.
+1. Follow this link to request [your data](https://www.netflix.com/account/getmyinfo), and sign in with your username and password.
 2. After that, click on the red box Submit Request.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"
-knitr::include_graphics("plot/request.jpg")}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics("plot/request.jpg")
 ```
 
 3. Now you need to verify your request via Mail.
 4. Once you confirm the request, you will be forwarded to the website and have to enter your password again. If your request is in progress you might have to wait a few days until the data is available to download.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"
-knitr::include_graphics("plot/request_progress.jpg")}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics("plot/request_progress.jpg")
 ```
 
 5. When you receive the mail "Your download is ready," you can download your data by clicking on the red box Get Information. Don't wait too long since you only have 7 days to download it from your account!
@@ -122,14 +120,18 @@ Now that you have imported the data set, let's have a deeper look. Since you alr
 - Which country released the most content (movies and tv shows)?
 - How many movies and tv shows are included? Try to do a simple plot here so you can see the distribution. If you cannot plot it just now, come back later to finish this.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics("plot/netflix_count.jpeg")
+```
+
 ::: {.tips .r data-latex="r"}
 You could use {dplyr}’s select, filter, count and arrange function to compute the desired outcome to answer the question. If you haven’t heard of the {dplyr} package yet, take the respective DataCamp course asap!
 For the plot, look at {ggplot} and then call geom_bar(). {ggplot2}’s syntax is perhaps a bit harder to learn at the start, but it gives you more plotting benefits in the long run. If you haven’t heard of the {ggplot2} package yet, take the respective DataCamp course.
 :::
 
-<!-- ::: {.tipsp .python data-latex="p"} -->
-
-<!-- ::: -->
+::: {.tipsp .python data-latex="p"}
+In order to manipulate big amounts of data, Pandas implements different functions to manipulate entries in the Dataframe. Useful functions are: select, filter, value_counts and max. If some of those functions seem new to you, don't scare away from them just now. When it comes to packages and their implementations, there are usually some easy to understand examples that can be found on their wiki page. Keep in mind that the country data is saved as a list, pandas offers the explode function that helps us with that. In order to display graphs, we recommend using seaborn as a package. Seaborn offers a wide variety of different graphs options, it is important that seaborn just translates your input into MatplotLib commands. So if you feel unsatisfied with the customisation options in seaborn, you can always build your own graph using MatplotLib. To display the amount of movies and tv-shows a seaborn.countplot can be used. 
+:::
 
 ## Data Cleaning and Useful Transformations
 
@@ -155,43 +157,43 @@ Next you might have recognized the “min” appendix. This can be deleted with 
 For the mean and standard deviation simply use {base} R’s mean() function to compute a mean of any column in R. Similarly, R comes with the sd() function to calculate the standard deviation of a column. You can combine these two functions, e.g., in a {dplyr}’s summarise() verb.
 :::
 
-<!-- ::: {.tipsp .python data-latex="p"} -->
-
-<!-- ::: -->
+::: {.tipsp .python data-latex="p"}
+First off, you might want to create a separate data frame for the movies so the tv shows do not bother you further. Try to find a useful criteria in the data that separates series and movies in order to filter out just the movies. To get the numeric value out of the string either a separation by space or match by regex will work. Make sure to convert the string text to a more suitable number type such as integer. Pandas already helps when finding out the standard deviation and mean with the implemented functions std() and  mean().
+:::
 
 ### A histogram of the top 10 longest movies duration
 
 Visualizing data is essential to facilitate perception and to understand information: Create a graph to visualize the top 10 longest movies.
 We focus on creating a histogram in the tips section since it’s perhaps the most common approach for plotting. You can, however, choose a different chart type; just make sure that the information you want to display is clear and correct. However, as in school, always add axis labels when possible.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics("plot/top10.jpg")
 ```
 
 ::: {.tips .r data-latex="r"}
 If your data is saved as a dataframe you can perceive with the data from the previous task. Use {ggplot2} to create a histogram. Integrate top_n() before the ggplot() call and select geom_col() to achieve a histogram presentation.
 :::
 
-<!-- ::: {.tipsp .python data-latex="p"} -->
-
-<!-- ::: -->
+::: {.tipsp .python data-latex="p"}
+How exactly you do this is up to you. An easy approach might be to sort the dataframe with movie durations in descending order and select only the first ten columns for a barplot. Look into pandas.nlargest() for more information.
+:::
 
 ### Visualizing movie durations over time
 
 While we are at the topic of movie durations, it might also be interesting to see how the average movie length evolved: Choose and plot the chart you think is most appropriate for displaying this type of information.
 After plotting, please comment and interpret the graph: Were there any significant increases/decreases in movie length over time? If so, what could be the reason?
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics("plot/movieduration.jpg")
 ```
 
 ::: {.tips .r data-latex="r"}
 Again, it's ggplot’s turn. Instead of preparing the summarise() and mean() functions combination you can also directly integrate the adjustments in the geom_bar call with (stat = "summary", fun = "mean"). 
 :::
 
-<!-- ::: {.tipsp .python data-latex="p"} -->
-
-<!-- ::: -->
+::: {.tipsp .python data-latex="p"}
+In order to summarize the mean movie length, look into the functions groupby() to group all movies by year and then find the average length mean(). Make sure that every year in the dataframe is present. In order to plot two plots on one axis, declare the axis as one plot and use the function axis.twinx().
+:::
 
 ## Your personal data
 
@@ -209,9 +211,9 @@ Additionally, convert the column Duration in minutes (round them) and extract th
 mutate and filter are your best friends in this cleaning process. 
 :::
 
-<!-- ::: {.tipsp .python data-latex="p"} -->
-
-<!-- ::: -->
+::: {.tipsp .python data-latex="p"}
+The most useful course for this task is probably Cleaning Data in Python. Use datetime functions, drop columns, filter by time.
+:::
 
 
 ### Merging datasets: primitive approach
@@ -239,8 +241,8 @@ Now try merging again!
 
 Your goal for this task is to plot how each viewer’s activity was recorded over time. Since it would be a bit unclear in a static plot, let's try to do a dynamic chart here! 
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics("plot/dynamic.gif")
 ```
 
 ::: {.tips .r data-latex="r"}
@@ -269,14 +271,9 @@ Useful functions might be sort_values() and groupby().
 
 ### Monthly viewing time in 2021
 
-Let’s get a little fancy by displaying the monthly average time you watched in 2021 (or another year of your choice). 
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-
-```
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics("plot/Cat03.jpg")
+Let’s get a little fancy by displaying the monthly average time you watched in 2021 (or another year of your choice).
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics("plot/monthly.jpg")
 ```
 
 ::: {.tips .r data-latex="r"}
@@ -293,8 +290,8 @@ We recommend a stepwise course of action: first, extract the month from your dat
 Our subsequent interest lies in analyzing the viewing time of specific weekdays. Either choose the whole year or a month of your interest and look at the weekday average. On which days have you watched more Netflix, can you see a peak?
 For our advanced programmers: Would it not be interesting to look at what time of the day you watch the most?
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics("plot/netflix_average_duration.jpeg.png")
 ```
 
 ::: {.tips .r data-latex="r"}
@@ -309,8 +306,8 @@ The procedure is similar to before. Get the weekday from your data, compute the 
 
 In this section, the goal should be to create a plot of your top 10 binge tv shows. Before you begin, you need to decide what binge watching means to you. We decided it’s at least 1 hour of a TV show per day. But you should adjust that to your watching behavior.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="75%"}
+knitr::include_graphics("plot/Binge.jpg")
 ```
 
 ::: {.tips .r data-latex="r"}
@@ -318,22 +315,22 @@ Again, you could use the familiar {dplyr} verbs for this part. You first want to
 For the plot, you can use ggplots geom_col() or whatever you think is best to present your binge series
 :::
 
-<!-- ::: {.tipsp .python data-latex="p"} -->
-
-<!-- ::: -->
+::: {.tipsp .python data-latex="p"}
+To do it “our way”, you could create a dataframe that only consists of the TV Shows you watched, count the number of episodes, your daily minutes, and group that by title. You can calculate the sum of episodes and minutes (or hours) per day and arrange that in descending order. You can create a bar plot or any other plot that conveys the message of your top ten bingeworthy shows!
+:::
 
 
 ## Scatterplot with marginal density
 
 You have computed and visualized your favorite binge tv shows, but how has your watching behavior developed on Netflix since you first used it? This question is something we want to analyze now. There are different possibilities to explore this question. We will start by visualizing it via a scatterplot with marginal density. Include all the profile names for this task and make a visual comparison. What can the plot tell us about your watching behavior?
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", out.width="50%"}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.show="hold", fig.align="center", out.width="75%"}
+knitr::include_graphics("plot/Scatter with density.jpg")
 ```
 
-<!-- ::: {.tips .r data-latex="r"} -->
-
-<!-- ::: -->
+::: {.tips .r data-latex="r"}
+To achieve this visualization calls from the packages ggExtra can be added to your ggplot. Have a look [at](https://r-graph-gallery.com/277-marginal-histogram-for-ggplot2.html) [these](https://r-charts.com/correlation/scatter-plot-marginal-histograms-ggplot2/) [sources](http://domenicovistocco.it/en/dv-blog/ggside/) and find your code. The shown visulaization was plotted with Python, R’s output can therefore vary !
+:::
 
 ::: {.tipsp .python data-latex="p"}
 Again, seaborn is your best friend! The jointplot function will give you a great plot if you use it correctly. 
@@ -343,8 +340,8 @@ Again, seaborn is your best friend! The jointplot function will give you a great
 
 Until now, even though we merged the two data sets, analyzing the Netflix movies was possible by only using each one. Let's change that! Generate a word cloud with your personal most watched genres! Is it what you expected it to be?
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "50%"}
+knitr::include_graphics("plot/netflix_wordcloud.jpeg")
 ```
 
 ::: {.tips .r data-latex="r"}
@@ -352,9 +349,9 @@ Install the package "wordcloud" and start preparing your joined dataset. We are 
 For the word cloud, set a seed if you want to get the same cloud every time you run the code. The call wordcloud only needs to be filled with the respective word and frequency column. Feel free to spice it up!
 :::
 
-<!-- ::: {.tipsp .python data-latex="p"} -->
-
-<!-- ::: -->
+::: {.tipsp .python data-latex="p"}
+Use the Wordcloud package that can be installed by using: from wordcloud import WordCloud. Stopwords are words, that will not be shown on the wordcloud.
+:::
 
 
 ## Surprise Us! 

@@ -13,13 +13,13 @@ This checklist should help you keep track of your exercises. Remember that you h
 ## Part 1: Exploratory Data Analysis (Beginner + Advanced)
 
 - You completed at least 6 courses on Datacamp. &check;
-- You completed section 4 and handed your project in at least 3 times. &check;
+- You completed section 4 and handed your project in **at least 3 times**. &check;
 - You checked that you included everything you coded in the right order and added explanatory comments.  &check;
 - You have all your output in the desired format. &check;
 - You compared your output with your group. &check;
 - You sent your final work to **projekt@tech-academy.io** (Remember: Each team member has to hand in their final work individually, in any case it can be the same  within the group). &check; 
 
-## Part 2: Recommendation System (motivated Beginner + Advanced)
+## Part 2: Content-Based Recommendation System (motivated Beginner + Advanced)
 
 - Everything of the above stated. &check;
-- **In addition** you also completed section 5 and handed your project in at least 3 times. &check;
+- **In addition** you also completed section 5 and handed your project in **at least 3 times**. &check;

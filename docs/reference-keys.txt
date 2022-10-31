@@ -5,7 +5,7 @@ rstudio
 datacamp-courses-and-curriculum
 helpful-links
 whats-python-and-datacamp-courses
-anaconda-and-jupyter
+google-colab-anaconda-and-jupyter
 datacamp-courses-and-curriculum-1
 helpful-links-1
 your-data-science-project
@@ -16,7 +16,7 @@ introduction-to-your-project
 purpose-of-the-project-guide
 what-is-this-project-about
 exploratory-data-analysis-getting-to-know-the-data-set
-recommendation-system
+content-based-recommendation-system
 exploratory-data-analysis
 getting-started
 discovering-the-data
@@ -39,9 +39,18 @@ binge-watching
 scatterplot-with-marginal-density
 word-cloud-with-your-favorite-genre
 surprise-us
+content-based-recommendation-system-1
+theory
+bag-of-words
+creating-a-corpus
+document-term-matrix
+cosine-similarity
+preparation-for-r-only
+function
+recommendations
 exercise-checklist
 part-1-exploratory-data-analysis-beginner-advanced
-part-2-recommendation-system-motivated-beginner-advanced
+part-2-content-based-recommendation-system-motivated-beginner-advanced
 whats-next-in-your-data-science-career
 continue-your-journey-on-datacamp
 data-science-in-general

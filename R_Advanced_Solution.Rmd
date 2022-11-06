@@ -1,0 +1,268 @@
+---
+title: "Advanced Netflix RS"
+author: "Jessie"
+date: "10/16/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r installing packages, include=FALSE}
+install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+install.packages("ggplot2", repos = "http://cran.us.r-project.org")
+install.packages("ggthemes", repos = "http://cran.us.r-project.org")
+install.packages("leaflet", repos = "http://cran.us.r-project.org")
+install.packages("lubridate", repos = "http://cran.us.r-project.org")
+install.packages("plotly", repos = "http://cran.us.r-project.org")
+install.packages("readr", repos = "http://cran.us.r-project.org")
+install.packages("tidyr", repos = "http://cran.us.r-project.org")
+install.packages("tm", repos = "http://cran.us.r-project.org")
+install.packages("SnowballC", repos = "http://cran.us.r-project.org")
+install.packages("lsa", repos = "http://cran.us.r-project.org")
+```
+
+```{r loading packages, include=FALSE}
+library(readr)
+library(tidyverse)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+library(ggthemes)
+library(leaflet)
+library(plotly)
+library(tm)
+library(SnowballC)
+library(lsa)
+```
+
+# First steps
+```{r}
+netflix_data <- read.csv("~/Desktop/Tech Academy/Netflix Project/netflix_titles.csv")
+```
+
+Remove unrelevant columns:
+```{r}
+netflix_clean <- netflix_data %>%
+  select(-c(country,date_added,release_year,rating,duration))
+```
+
+
+# Second steps: Vorbereitung for recommendation system --> Description, Genre & Actors
+Weiters Vorgehen bzgl bag of words:
+https://thibaut-deveraux.medium.com/how-to-create-a-bag-of-words-embedding-in-r-e609095ebf53
+
+## Preperation for description
+
+Creating corpus
+```{r}
+netflix_descr_corpus <- VCorpus(VectorSource(netflix_clean$description))
+```
+
+Document term matrix for words
+```{r}
+control_list_words = list(
+  tokenize = words,
+  language="en",
+  bounds = list(global = c(100, Inf)),
+  tolower = TRUE,
+  removePunctuation = TRUE,
+  stopwords = TRUE,
+  stemming = TRUE
+)
+```
+
+Making a document-term matrix
+```{r}
+netflix_descr <- DocumentTermMatrix(netflix_descr_corpus, control = control_list_words)
+netflix_descr <- as.matrix(netflix_descr)
+```
+
+### Cosine Similarity of each movie
+
+Titles have to be represented as columns so I need to transpose the matrix
+```{r}
+# Convert into numeric
+netflix_descr <- matrix(as.numeric(netflix_descr),ncol = ncol(netflix_descr))
+# Transpose Matrix
+netflix_descr <- t(netflix_descr)
+# Column names titles
+colnames(netflix_descr) <- netflix_clean$title
+```
+
+Calculate cosine similarity (not from scratch)
+```{r}
+cos_descr <- cosine(netflix_descr)
+```
+
+Define dataframe so that I can use dplyr and replace all NAs to 0
+```{r}
+descr_dataframe <- as.data.frame(cos_descr)
+descr_dataframe[is.na(descr_dataframe)] <- 0
+```
+
+
+## Prep genre
+
+get rid off space and delete ,
+```{r}
+netflix_genre <- netflix_clean %>%
+  select(c(title,listed_in))
+
+netflix_genre$listed_in <- gsub(" ","",netflix_genre$listed_in)
+netflix_genre$listed_in <- gsub(","," ",netflix_genre$listed_in)
+
+```
+
+Create corpus
+```{r}
+netflix_genre_corpus <- VCorpus(VectorSource(netflix_genre$listed_in))
+```
+
+Making a document-term matrix
+```{r}
+netflix_genre <- DocumentTermMatrix(netflix_genre_corpus, control = control_list_words)
+netflix_genre <- as.matrix(netflix_genre)
+```
+
+### Cosine Similarity of each movie
+
+```{r}
+# Convert into numeric
+netflix_genre <- matrix(as.numeric(netflix_genre),ncol = ncol(netflix_genre))
+# Transpose Matrix
+netflix_genre <- t(netflix_genre)
+# Column names titles
+colnames(netflix_genre) <- netflix_clean$title
+```
+
+```{r}
+cos_genre <- cosine(netflix_genre)
+```
+
+```{r}
+genre_dataframe <- as.data.frame(cos_genre)
+genre_dataframe[is.na(genre_dataframe)] <- 0
+```
+
+## Prep actor
+
+get rid off space and delete ,
+```{r}
+netflix_actor <- netflix_clean %>%
+  select(c(title,cast))
+
+netflix_actor$cast <- gsub(" ","",netflix_actor$cast)
+netflix_actor$cast <- gsub(","," ",netflix_actor$cast)
+```
+
+Create corpus
+```{r}
+netflix_actor_corpus <- VCorpus(VectorSource(netflix_actor$cast))
+```
+
+We need a new list for actors since they usually don't include normal english words, and we don't need to delete stopwords or create stemmings
+```{r}
+control_list_words_people = list(
+  tokenize = words,
+  #language="en",
+  bounds = list(global = c(10, Inf)),
+  tolower = TRUE,
+  removePunctuation = TRUE
+  #stopwords = TRUE,
+  #stemming = TRUE
+)
+```
+
+Making a document-term matrix
+```{r}
+netflix_actor <- DocumentTermMatrix(netflix_actor_corpus, control = control_list_words_people)
+netflix_actor <- as.matrix(netflix_actor)
+```
+
+### Cosine Similarity of each movie
+
+```{r}
+# Convert into numeric
+netflix_actor <- matrix(as.numeric(netflix_actor),ncol = ncol(netflix_actor))
+# Transpose Matrix
+netflix_actor <- t(netflix_actor)
+# Column names titles
+colnames(netflix_actor) <- netflix_clean$title
+```
+
+```{r}
+cos_actor <- cosine(netflix_actor)
+```
+
+```{r}
+actor_dataframe <- as.data.frame(cos_actor)
+actor_dataframe[is.na(actor_dataframe)] <- 0
+```
+
+# Loop for recommendation
+
+This step already happens in the beginner track, so you can ignore this part of reading Tobis file with watch history & preparing it for the loop.
+The only important thing is, that you need to sort Tobis viewing history chronological so that the loop can start with the last seen movie.
+```{r}
+tobi_data <- read_csv("~/Desktop/Tech Academy/Netflix Project/ViewingActivity.csv",show_col_types = FALSE)
+tobi_data <- tobi_data %>%
+  mutate(duration_min=as.numeric(as.duration(hms(Duration))/60)) %>%
+  mutate(date=as.Date(`Start Time`),.after=`Start Time`) %>%
+  mutate_if(is.numeric,round,0) %>%
+  filter(duration_min>0,!`Supplemental Video Type`%in% c("TRAILER")) %>%
+  select(-c(Attributes,`Supplemental Video Type`,`Device Type`,Bookmark,`Latest Bookmark`,Country)) %>%
+  rename(profile_name=`Profile Name`, start_time=`Start Time`) %>%
+  mutate(title_duplicate=Title) %>%
+  separate(col = title_duplicate, into = c("title", "season", "episode"), sep = ': ')
+
+tobi_data$category <- "TV Show"
+tobi_data$category[is.na(netflix_data$episode)==TRUE] <- "Movie"
+
+tobi_data <- tobi_data %>%
+  mutate(title_new = ifelse(category=="Movie", Title, title)) %>%
+  filter(profile_name == "Tobi") %>%
+  arrange(desc(date)) %>%
+  select(c(title_new)) 
+  
+tobi_data <- unique(tobi_data)
+```
+
+```{r}
+i <- 0
+j <- 1
+
+for (j in 1:nrow(tobi_data)) {
+  movie <- tobi_data[j,1]
+  if (movie %in% netflix_clean$title) {
+    
+    movie <- as.character(movie)
+    test_genre <- genre_dataframe %>%
+      select(movie) %>%
+      rename(genre = movie)
+    
+    test_actor <- actor_dataframe %>%
+      select(movie) %>%
+      rename(cast = movie)
+    
+    test_descr <- descr_dataframe %>%
+      select(movie) %>%
+      rename(descr = movie) %>%
+      mutate(genre = test_genre$genre, cast = test_actor$cast) %>%
+      mutate(final = 2/6*descr + 3/6*genre + 1/6*cast) %>%
+      arrange(desc(final))
+    # Jeder soll seine eigene Gewichtung festlegen
+    
+    print(paste("Top 10 recommendations for",movie))
+    print(row.names(test_descr[2:11,]),right = FALSE)
+    
+    i <- i+1
+    
+    if (i > 5) {
+      break
+    }
+  }
+  j <- j+1
+}
+```

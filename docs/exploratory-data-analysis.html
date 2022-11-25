@@ -348,8 +348,10 @@ Now try merging again!</p>
 <div class="tips r">
 <p>The data is already ready for this. Your ggplot() call might need some more input than you used before. As the graphic is supposed to be a line with points geom_line() and geom_point () will be a good choice of combination. The dynamic aspect is no magic, you just need to add the transition_reveal() call.</p>
 </div>
-<!-- ::: {.tipsp .python data-latex="p"} -->
-<!-- ::: -->
+<div class="tipsp python">
+<p>Just a heads up, in Python the Solution will not be as straight forward as in R (Python offers way too much customization for that). This Dynamic plot will help us to further understand the Backbone of all the graphs we have plotted before, we will learn more about matplotlib trying to animate our simple linelplot. If you feel like you are not up to this challenge already, dont worry, a lineplot with nice axis labels will also be counted as a solution.
+For those who are up to the challenge: try finding guidelines online with the keywords “animated lineplot python”. A possible solution will be to use the matplotlib.animation Module, specifically the Function “FuncAnimation”. This Function will require us to set our own update function, where we tell matplotlib what to display in every iteration that the update function will be called. Every update call will be turned into 1 frame in the animation.</p>
+</div>
 </div>
 </div>
 <div id="lets-get-personal" class="section level2 hasAnchor" number="4.4">
